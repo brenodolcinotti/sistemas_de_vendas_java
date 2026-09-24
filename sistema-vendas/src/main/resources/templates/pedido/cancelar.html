@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancelar Pedido</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-danger">
+                <div class="card-header bg-danger text-white text-center py-3">
+                    <h4 class="mb-0"><i class="bi bi-exclamation-octagon-fill me-2"></i> Confirmar Cancelamento</h4>
+                </div>
+                
+                <div class="card-body p-4 text-center">
+                    <h5 class="text-danger mb-3">Deseja realmente cancelar este pedido?</h5>
+                    <p class="text-muted small">Ao cancelar, os produtos associados serão automaticamente devolvidos ao stock da loja e o status passará a CANCELADO.</p>
+                    
+                    <div class="alert alert-light border text-start mt-4 mb-4 shadow-sm">
+                        <ul class="list-unstyled mb-0 fs-6">
+                            <li class="mb-2"><strong>Número do Pedido:</strong> <span class="font-monospace text-muted" th:text="${pedido.id}"></span></li>
+                            <li class="mb-2"><strong>Cliente:</strong> <span class="fw-bold" th:text="${pedido.cliente.nome}"></span></li>
+                            <li class="mb-2"><strong>Data:</strong> <span th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy HH:mm')}"></span></li>
+                            <li><strong>Valor Total:</strong> <span class="text-success fw-bold" th:text="|R$ ${#numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}|"></span></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- O formulário envia um POST para a rota de cancelar com o ID do pedido -->
+                    <form th:action="@{/pedidos/cancelar/{id}(id=${pedido.id})}" method="post">
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <a th:href="@{/pedidos}" class="btn btn-outline-secondary px-4 fw-bold">Voltar</a>
+                            <button type="submit" class="btn btn-danger px-4 fw-bold">
+                                <i class="bi bi-x-circle me-1"></i> Cancelar Pedido
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

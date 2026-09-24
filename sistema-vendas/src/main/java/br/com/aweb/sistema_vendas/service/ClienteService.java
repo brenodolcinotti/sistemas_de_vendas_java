@@ -53,4 +53,13 @@ public class ClienteService {
         }
         clienteRepository.deleteById(id);
     }
+
+    public List<Cliente> listarTodos() {
+        return clienteRepository.findAll();
+    }
+
+    // Se o seu buscarPorId atual não devolver um Optional<Cliente>, adicione este aqui também com outro nome, ou substitua o antigo:
+    public Optional<Cliente> buscarOptionalPorId(Long id) {
+    return clienteRepository.findById(id);
+}
 }

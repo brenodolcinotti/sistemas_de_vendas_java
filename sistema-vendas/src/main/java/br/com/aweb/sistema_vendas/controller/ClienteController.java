@@ -7,6 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.util.List;
+import java.util.Optional;
 
 import br.com.aweb.sistema_vendas.model.Cliente;
 import br.com.aweb.sistema_vendas.service.ClienteService;
